@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Add New Product</h2>
+        <form action="/products" method="POST" class="mb-5">
+            <div class="form-row" style="display: flex; justify-content: space-between; margin-top: 5vh;">
+                <div class="form-group" style="width: 48%;">
+                    <label for="name" style="margin-bottom: 2vh;">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group" style="width: 48%;">
+                    <label for="price" style="margin-bottom: 2vh;">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" style="margin-bottom: 2vh; margin-top: 2vh;">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category" style="margin-bottom: 2vh; margin-top: 2vh;">Category</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+            </div>
+            <div class="form-group">
+                <label for="content" style="margin-bottom: 2vh; margin-top: 2vh;">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl" style="margin-bottom: 2vh; margin-top: 2vh;">Image URL</label>
+                <input type="text" class="form-control" id="imageUrl" name="imageUrl">
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px; background-color: #28a745; border-color: #28a745; font-size: 16px; font-weight: bold;">Add Product</button>
+        </form>
+
+        <h2>Product List</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (products.length > 0) { %>
+                    <% products.forEach(product => { %>
+                        <tr>
+                            <td><%= product.name %></td>
+                            <td><%= product.price %></td>
+                            <td><%= product.description %></td>
+                            <td><%= product.category %></td>
+                            <td>
+                                <a href="/products/edit/<%= product._id %>" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="/products/<%= product._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="5" class="text-center">No products available</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</body>
+</html>

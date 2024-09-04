@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New User</title>
+</head>
+<body>
+    <div style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); font-family: 'Arial', sans-serif;">
+        <h2 style="color: #333; text-align: center; margin-bottom: 25px;">Add New User</h2>
+        <form action="/users/add" method="POST" style="display: flex; flex-direction: column;">
+            <div style="margin-bottom: 15px;">
+                <label for="name" style="display: block; margin-bottom: 5px; color: #666; font-weight: bold;">Name:</label>
+                <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="price" style="display: block; margin-bottom: 5px; color: #666; font-weight: bold;">Price:</label>
+                <input type="number" id="price" name="price" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="description" style="display: block; margin-bottom: 5px; color: #666; font-weight: bold;">Description:</label>
+                <input type="text" id="description" name="description" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="category" style="display: block; margin-bottom: 5px; color: #666; font-weight: bold;">Category:</label>
+                <input type="text" id="category" name="category" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="content" style="display: block; margin-bottom: 5px; color: #666; font-weight: bold;">Content:</label>
+                <input type="text" id="content" name="content" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="imageUrl" style="display: block; margin-bottom: 5px; color: #666; font-weight: bold;">Upload Image:</label>
+                <input type="file" id="imageUrl" name="imageUrl" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;">
+            </div>
+            <button type="submit" style="background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s ease;">Add User</button>
+        </form>
+    </div>
+
+    <script>
+        // Handle responsiveness with JavaScript if needed
+        if (window.innerWidth <= 480) {
+            document.querySelector('.container1').style.padding = '15px 20px';
+            document.querySelector('h2').style.fontSize = '20px';
+            document.querySelector('button[type="submit"]').style.padding = '10px';
+            document.querySelector('button[type="submit"]').style.fontSize = '14px';
+        }
+    </script>
+</body>
+</html>
