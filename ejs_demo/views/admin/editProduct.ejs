@@ -10,29 +10,35 @@
     <div class="container mt-5">
         <h2>Edit Product</h2>
         <form action="/products/edit/<%= product._id %>" method="POST" class="mb-5">
-            <div class="form-group">
-                <label for="name">Product Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" required>
+            <div class="form-row" style="display: flex; justify-content: space-between; margin-top: 5vh;">
+                <div class="form-group" style="width: 48%;">
+                    <label for="name" style="margin-bottom: 2vh;">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group" style="width: 48%;">
+                    <label for="price" style="margin-bottom: 2vh;">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+                <label for="description" style="margin-bottom: 2vh; margin-top: 2vh;">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required><%= product.description %></textarea>
+                <label for="category" style="margin-bottom: 2vh; margin-top: 2vh;">Category</label>
+                <input type="text" class="form-control" id="category" name="category" required>
             </div>
             <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" name="category" value="<%= product.category %>" required>
+                <label for="content" style="margin-bottom: 2vh; margin-top: 2vh;">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
             </div>
-            <div class="form-group">
-                <label for="content">Content</label>
-                <textarea class="form-control" id="content" name="content" rows="3" required><%= product.content %></textarea>
-            </div>
-            <div class="form-group">
-                <label for="imageUrl">Image URL</label>
+            <!-- <div class="form-group">
+                <label for="imageUrl" style="margin-bottom: 2vh; margin-top: 2vh;">Image URL</label>
                 <input type="text" class="form-control" id="imageUrl" name="imageUrl" value="<%= product.imageUrl %>">
+            </div> -->
+            <div class="form-group">
+                <label for="image" style="margin-bottom: 2vh; margin-top: 2vh;">Image URL</label>
+                <input type="file" class="form-control" id="image" name="image" value="<%= product.imageUrl %>">
             </div>
             <button type="submit" class="btn btn-primary" style="margin-top: 20px; background-color: #28a745; border-color: #28a745; font-size: 16px; font-weight: bold;">Update Product</button>
         </form>

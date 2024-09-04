@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
         <h2>Add New Product</h2>
-        <form action="/products" method="POST" class="mb-5">
+        <!-- <form action="/products" method="POST" enctype="multipart/form-data" class="mb-5">
             <div class="form-row" style="display: flex; justify-content: space-between; margin-top: 5vh;">
                 <div class="form-group" style="width: 48%;">
                     <label for="name" style="margin-bottom: 2vh;">Product Name</label>
@@ -32,13 +33,46 @@
                 <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
             </div>
             <div class="form-group">
-                <label for="imageUrl" style="margin-bottom: 2vh; margin-top: 2vh;">Image URL</label>
-                <input type="text" class="form-control" id="imageUrl" name="imageUrl">
+                <label for="image" style="margin-bottom: 2vh; margin-top: 2vh;">Choose Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px; background-color: #28a745; border-color: #28a745; font-size: 16px; font-weight: bold;">Add Product</button>
+        </form> -->
+
+
+        <form action="/products" method="POST">
+            <div class="form-row" style="display: flex; justify-content: space-between; margin-top: 5vh;">
+                <div class="form-group" style="width: 48%;">
+                    <label for="name" style="margin-bottom: 2vh;">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group" style="width: 48%;">
+                    <label for="price" style="margin-bottom: 2vh;">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" style="margin-bottom: 2vh; margin-top: 2vh;">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category" style="margin-bottom: 2vh; margin-top: 2vh;">Category</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+            </div>
+            <div class="form-group">
+                <label for="content" style="margin-bottom: 2vh; margin-top: 2vh;">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image" style="margin-bottom: 2vh; margin-top: 2vh;">Image URL</label>
+                <input type="file" class="form-control" id="image" name="image">
             </div>
             <button type="submit" class="btn btn-primary" style="margin-top: 20px; background-color: #28a745; border-color: #28a745; font-size: 16px; font-weight: bold;">Add Product</button>
         </form>
+        
 
-        <h2>Product List</h2>
+
+        <h2 style="margin-bottom: 2vh; margin-top: 2vh;">Product List</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -73,6 +107,5 @@
             </tbody>
         </table>
     </div>
-
 </body>
 </html>

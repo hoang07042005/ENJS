@@ -11,9 +11,9 @@ router.use(methodOverride('_method'));
 router.get('/add', async (req, res) => {
     try {
         const products = await Product.find();
-        res.render('admin/addProduct', { products }); // Pass products to the view
+        res.render('admin/addProduct', { products });
     } catch (error) {
-        console.error('Error retrieving products:', error); 
+        console.error('Error retrieving products:', error);
         res.status(500).json({ message: 'Error retrieving products', error: error.message });
     }
 });
