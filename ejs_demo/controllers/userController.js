@@ -7,6 +7,7 @@ exports.addUserForm = (req, res) => {
 };
 
 
+
 exports.addUser = async (req, res) => {
     try {
         const newUser = new User(req.body);

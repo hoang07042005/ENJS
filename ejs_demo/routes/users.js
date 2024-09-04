@@ -15,3 +15,4 @@ router.post('/:id/edit', userController.updateUser);
 router.post('/:id/delete', userController.deleteUser);
 
 module.exports = router;
+

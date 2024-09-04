@@ -9,3 +9,4 @@ router.post('/add/:id', cartController.addToCart);
 router.post('/remove/:id', cartController.removeFromCart);
 
 module.exports = router;
+

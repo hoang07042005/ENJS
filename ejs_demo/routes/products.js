@@ -68,3 +68,5 @@ router.put('/:id', productController.updateProduct);
 router.get('/suggestions/:id', productController.getSuggestedProducts);
 
 module.exports = router;
+
+
