@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Adjust the path to your Bootstrap CSS -->
+
 </head>
 <body>
     <div class="container mt-5">
         <div class="form-container" style="padding: 20px; border-radius: 8px; background-color: #f9f9f9; max-width: 1000px; margin: 0 auto;">
         <h2>Edit Product</h2>
-        <form action="/products/edit/<%= product._id %>" method="POST" class="mb-5">
+        <form action="/admin/edit/<%= product._id %>" method="POST" class="mb-5">
             <div class="form-row" style="display: flex; justify-content: space-between; margin-top: 5vh;" >
                 <div class="form-group" style="width: 49%;">
                     <label for="name" style="margin-bottom: 2vh; margin-left: 3vh;">Product Name</label>

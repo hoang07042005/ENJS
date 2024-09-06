@@ -9,6 +9,7 @@ const multer = require('multer');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const cartRouter = require('./routes/cart');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use((req, res, next) => {
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
+app.use('/admin', adminRouter);
 
 // Route to handle file upload
 app.post('/upload', upload.single('image'), (req, res) => {
