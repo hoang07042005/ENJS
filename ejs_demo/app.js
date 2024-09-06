@@ -4,25 +4,25 @@ const cookieParser = require('cookie-parser');
 const ejsLayouts = require('express-ejs-layouts');
 const logger = require('morgan');
 const createError = require('http-errors');
-const multer = require('multer'); // Import multer
+const multer = require('multer');
 
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
-const cartRouter = require('./routes/cart'); // Import the cart routes
+const cartRouter = require('./routes/cart');
 
 const app = express();
 
 // Configure multer storage
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Directory where uploaded files will be saved
+        cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Set unique filename
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
-// Initialize multer with the storage configuration
+// Initialize multer
 const upload = multer({ storage: storage });
 
 // view engine setup
@@ -30,31 +30,32 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(ejsLayouts);
-app.set('layout', 'main');
+app.set('layout', 'main'); // Default layout for non-admin views
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from the uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+  app.set('layout', req.url.startsWith('/admin') ? 'admin/main' : 'main');
+  next();
+});
+
+
+
 
 // Define routes
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
-app.use('/cart', cartRouter); // Use the cart routes
+app.use('/cart', cartRouter);
 
 // Route to handle file upload
 app.post('/upload', upload.single('image'), (req, res) => {
-    // Access the uploaded file through req.file
     console.log(req.file);
-
-    // Handle other form data if needed
     console.log(req.body);
-
-    // Save file information to the database or process further
-    
-    // Redirect or render a response
     res.redirect('/');
 });
 

@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .formatted-content {
+            white-space: pre-wrap; 
+            white-space: -moz-pre-wrap; 
+            white-space: -pre-wrap; 
+            white-space: -o-pre-wrap;
+            word-wrap: break-word; 
+            max-width: 100%;
+            padding: 10vh;
+            
+        }
+    </style>
+
 </head>
 <body>
     <div class="container" style="width: 80%; margin: 0 auto;">
@@ -14,20 +27,21 @@
 
         <div class="product-container" style="display: flex; align-items: flex-start; gap: 20px;">
             <div class="product-image" style="flex-shrink: 0;">
-                <img src="/uploads/<%= product.image %>" alt="<%= product.name %> image" style="max-width: 100%; height: auto;">
+                <img src="/uploads/<%= product.image %>" alt="<%= product.name %> image" style="max-width: 400px; height: auto;">
             </div>
             <div class="product-info" style="flex: 2; padding: 5vh; margin-left: 15vh;">
-                <h1><%= product.name %></h1>
+                <h3><%= product.name %></h3>
                 <p>$<%= product.price %></p>
                 <p><%= product.description %></p>
                 
                 <form action="/cart/add/<%= product._id %>" method="POST">
                     <div class="wrap-num-product flex-w m-r-20 m-tb-10" style="display: flex; align-items: center; margin-right: 20px; margin-top: 10vh; margin-bottom: 10px;">
                         <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="0" style="width: 150px; height: 40px; 
-                        text-align: center; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; margin: 0 10px;">
+                        text-align: center; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; margin: 0 10px; margin-left: 30vh;">
+            
                     </div>
                     
-                    <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="margin-left: 10px; width: 150px; display: flex; 
+                    <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="margin-left: 30vh; width: 150px; display: flex; 
                     align-items: center; justify-content: center; padding: 10px 20px; background-color: #28a745; 
                     color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s; font-weight: bold;">Add to cart</button>
                 </form>
@@ -35,41 +49,71 @@
             </div>                
         </div>
 
-        <div class="content-wrapper" style="margin-top: 8vh; margin-bottom: 15vh; border: 1px solid #e6e6e6;">
+        <div class="content-wrapper" style="padding:0 10px 10px 10px; margin-top: 8vh; margin-bottom: 15vh; border: 1px solid #e6e6e6;">
             <h4 style="text-align: center; margin-top: 5vh;">Description</h4>
             <div class="product-image" style="display: flex; align-items: center; flex-shrink: 0;">
                 <img src="/uploads/<%= product.image %>" alt="<%= product.name %> image" style="max-width: 30%; height: auto; margin-top: 5vh; padding-left: 15vh;">
-                <h2 style="margin-left: 20px; margin-top: 5vh;"><%= product.name %></h2>
+                <h3 style="margin-left: 20px; margin-top: 20vh;"><%= product.name %></h3>
             </div>
-            <p style="padding-left: 15vh; margin-top: 5vh; margin-bottom: 5vh;"><%= product.content %></p>
+            <div class="formatted-content"><%= product.content %></div>
         </div>
+    </div>
 
+        <table class="table table-bordered table-striped table-hover" style="height: 6vh;">
+            <tr>
+                <td class="category-cell text-center" style="font-size: 20px;  color: #6d7071;" >Categories: <%= product.category %></td>
+            </tr>
+        </table>
+
+    <div class="container">
         <div class="suggestions-section" style="margin-top: 8vh;">
-            <div style="text-align: center; margin-bottom: 10vh;">
+            <div style="text-align: center; margin-bottom: 10vh;">  
                 <h3 >You Might Also Like</h3>
             </div>
             <% if (suggestedProducts && suggestedProducts.length > 0) { %>
                 <div class="row">
                     <% suggestedProducts.forEach(product => { %>
-                        <div class="col-md-4" style="margin-bottom: 2vh;">
-                            <div class="card" style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                        <!-- <div class=" col-md-3 mb-4" style="margin-bottom: 2vh;">
+                            <div class="card h-100" style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
                                 <img src="/uploads/<%= product.image %>" class="card-img-top" alt="<%= product.name %> image" style="height: 280px; object-fit: cover;">
                                 <div class="card-body">
                                     <h5 class="card-title"><%= product.name %></h5>
                                     <p class="card-text">$<%= product.price %></p>
                                     <p><%= product.description %></p>
-                                    <a href="/products/<%= product._id %>" class="btn btn-primary"  style="background-color: #28a745; border-color: #28a745; font-size: 16px; font-weight: bold;" >View Details</a>
+                                    <div class="view" style="padding-top: 2vh;">
+                                        <a href="/products/<%= product._id %>" class="btn btn-primary"  style="background-color: #28a745; border-color: #28a745; font-size: 16px; font-weight: bold;" >View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-md-3 mb-4">
+                            <div class="card h-100">
+                                <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" style="height: 28vh;">
+    
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= product.name %></h5>
+                                    <p class="card-text">Price: $<%= product.price %></p>
+                                    <p class="card-text"><%= product.description %></p>
+                                </div>
+    
+                                <div class="view" style="margin-bottom: 2vh; margin-left: 3vh;">
+                                    <a href="/products/<%= product.id %>" style="display: inline-block; padding: 8px 16px; font-size: 16px; font-weight: bold; color: #fff; background-color: #28a745;
+                                    text-align: center; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;
+                                    ">View Details</a>
                                 </div>
                             </div>
                         </div>
                     <% }) %>
                 </div>
             <% } else { %>
-                <p>No suggestions available at the moment.</p>
+                <p style="text-align: center;">No suggestions available at the moment.</p>
             <% } %>
         </div>
-
     </div>
+    
+
+
+    
 </body>
 </html>
 
