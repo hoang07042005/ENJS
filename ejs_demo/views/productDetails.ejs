@@ -29,35 +29,35 @@
             <div class="product-image" style="flex-shrink: 0;">
                 <img src="/uploads/<%= product.image %>" alt="<%= product.name %> image" style="max-width: 400px; height: auto;">
             </div>
-            <div class="product-info" style="flex: 2; padding: 5vh; margin-left: 15vh;">
-                <h3><%= product.name %></h3>
+            <div class="product-info" style="flex: 2; padding: 5vh; margin-left: 15vh;  padding-left: 25vh;">
+                <h3  style="color: #f2931f;"><%= product.name %></h3>
                 <p>$<%= product.price %></p>
                 <p><%= product.description %></p>
                 
                 <form action="/cart/add/<%= product._id %>" method="POST">
                     <div class="wrap-num-product flex-w m-r-20 m-tb-10" style="display: flex; align-items: center; margin-right: 20px; margin-top: 10vh; margin-bottom: 10px;">
                         <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="0" style="width: 150px; height: 40px; 
-                        text-align: center; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; margin: 0 10px; margin-left: 30vh;">
+                        text-align: center; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; margin: 0 10px;">
             
                     </div>
                     
-                    <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="margin-left: 30vh; width: 150px; display: flex; 
+                    <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="margin-left: 1.5vh; width: 150px; display: flex; 
                     align-items: center; justify-content: center; padding: 10px 20px; background-color: #f2931f; 
                     color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s; font-weight: bold;">Add to cart</button>
                 </form>
                 
             </div>                
         </div>
-
+    </div>
         <div class="content-wrapper" style="padding:0 10px 10px 10px; margin-top: 8vh; margin-bottom: 15vh; border: 1px solid #e6e6e6;">
             <h4 style="text-align: center; margin-top: 5vh;">Description</h4>
             <div class="product-image" style="display: flex; align-items: center; flex-shrink: 0;">
-                <img src="/uploads/<%= product.image %>" alt="<%= product.name %> image" style="max-width: 30%; height: auto; margin-top: 5vh; padding-left: 15vh;">
-                <h3 style="margin-left: 20px; margin-top: 5vh;"><%= product.name %></h3>
+                <img src="/uploads/<%= product.image %>" alt="<%= product.name %> image" style="max-width: 20%; height: auto; margin-top: 5vh; padding-left: 15vh;">
+                <h3 style="margin-left: 15vh; margin-top: 5vh; color: #f2931f;"><%= product.name %></h3>
             </div>
             <div class="formatted-content"><%= product.content %></div>
         </div>
-    </div>
+    
 
         <table class="table table-bordered table-striped table-hover" style="height: 6vh;">
             <tr>
@@ -73,12 +73,12 @@
             <% if (suggestedProducts && suggestedProducts.length > 0) { %>
                 <div class="row">
                     <% suggestedProducts.forEach(product => { %>
-                        <div class="col-md-3 mb-4">
+                        <div class="col-md-3 mb-4" style=" height: 500px;">
                             <div class="card h-100">
-                                <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" style="height: 28vh;">
+                                <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" style="height: 36vh;">
     
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= product.name %></h5>
+                                    <h5 class="card-title" style="color: #f2931f; "><%= product.name %></h5>
                                     <p class="card-text">Price: $<%= product.price %></p>
                                     <p class="card-text"><%= product.description %></p>
                                 </div>

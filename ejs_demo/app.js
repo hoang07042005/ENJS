@@ -11,6 +11,8 @@ const productsRouter = require('./routes/products');
 const cartRouter = require('./routes/cart');
 const adminRouter = require('./routes/admin');
 
+const productController = require('./controllers/productController');
+
 const app = express();
 
 // Configure multer storage
@@ -53,6 +55,10 @@ app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/admin', adminRouter);
+
+
+app.get('/', productController.getAllProducts);
+
 
 // Route to handle file upload
 app.post('/upload', upload.single('image'), (req, res) => {

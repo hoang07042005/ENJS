@@ -4,14 +4,29 @@ const mongoose = require('mongoose');
 
 exports.getAddProductPage = async (req, res) => {
     try {
-        const products = await Product.find();
-        res.render('admin/addProduct', { layout: 'admin/main', products });
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10; 
+
+        const options = {
+            page,
+            limit,
+            sort: { createdAt: -1 } 
+        };
+
+        const result = await Product.paginate({}, options);
+        
+        res.render('admin/addProduct', {
+            layout: 'admin/main',
+            products: result.docs,
+            currentPage: result.page,
+            totalPages: result.totalPages
+        });
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving products', error: error.message });
     }
 };
 
-// Controller to render the Edit Product page
+
 exports.getEditProductPage = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -22,7 +37,7 @@ exports.getEditProductPage = async (req, res) => {
     }
 };
 
-// Controller to handle product updates
+
 exports.updateProduct = async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -33,7 +48,7 @@ exports.updateProduct = async (req, res) => {
     }
 };
 
-// Controller to handle product deletion
+
 exports.deleteProduct = async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
